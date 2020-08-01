@@ -3,7 +3,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { View } from 'react-native'
 import Header from './components/Header';
 import TabBar from './components/TabBar';
-import Deck from './screens/Deck';
+import Splash from './screens/Splash';
 
 export default function App () {
 
