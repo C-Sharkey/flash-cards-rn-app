@@ -1,24 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import * as React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { View } from 'react-native'
+import Header from './components/Header';
+import TabBar from './components/TabBar';
+import Deck from './screens/Deck';
 
-export default function App() {
-  const[outputText, setOutputText] = useState('Open up App.js to start working on your app!')
+export default function App () {
+
   return (
-    <View style={styles.container}>
-      <Text>{outputText}</Text>
-      <Button title="Change Text" onPress={() => setOutputText('the text changed......')}/>
-      <Button title="Change Text" onPress={() => setOutputText('the text changed Again......')}/>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <Header />
+      <TabBar />
+    </PaperProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
