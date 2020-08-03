@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Button  } from 'react-native-paper';
+import { Button, Colors  } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
-export default function LargeButton ({btnText, mode}) {
+export default function LargeButton ({btnText, mode, changeScreen, btnColour}) {
   return (
     <Button 
+        color={btnColour}
         style={styles.button}
         mode={mode} 
-        onPress={() => console.log('Button Pressed')}
+        onPress={changeScreen}
     >
       {btnText}
     </Button>
