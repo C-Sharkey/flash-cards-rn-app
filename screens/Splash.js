@@ -1,15 +1,22 @@
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { Title } from 'react-native-paper';
 import QuizCard from '../components/QuizCard';
+import { ProgressBar, Colors } from 'react-native-paper';
+import FormButton from '../components/FormButton';
 
 export default function Splash () {
-    setTimeout(() => {
-        navigation.replace('Home');
-    }, 3000);
+  const navigation = useNavigation();
+    // setTimeout(() => {
+    //     navigation.replace('Home');
+    // }, 3000);
   return (
       <View style={styles.container}>
-        <Title style={styles.title}>Splash Screen</Title>
+        <Title style={styles.title}>Flash Cards</Title>
+        <ProgressBar progress={0.5} color={Colors.red800} />
+        <FormButton  btnText='Go to home...' changeScreen={()=>navigation.navigate('Decks')}/>
       </View>
   );
 };
