@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { BottomNavigation } from 'react-native-paper';
 import Decks from '../screens/Decks';
-import Deck from '../screens/Deck';
 import AddDeck from '../screens/AddDeck';
-import AddCard from '../screens/AddCard';
-import Quiz from '../screens/Quiz';
 
 
 const Home = () => <Decks />;
-const NewDeck = () => <Quiz />;
+const NewDeck = () => <AddDeck />;
 
 const TabBar = () => {
   const [index, setIndex] = React.useState(0);

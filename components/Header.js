@@ -1,17 +1,20 @@
 import * as React from 'react';
 import { Appbar } from 'react-native-paper';
 
-const Header = () => {
+const Header = ({title}) => {
+  // state for goback as prop
   const _goBack = () => console.log('Went back');
-  const _handleSearch = () => console.log('Searching');
-  const _handleMore = () => console.log('Shown more');
+  const goBack = false;
+  const goBackBtn = (goBack) => {
+    if(goBack) {
+      return <Appbar.BackAction onPress={_goBack} />
+    }
+  }
 
   return (
     <Appbar.Header>
-      <Appbar.BackAction onPress={_goBack} />
-      <Appbar.Content title="Title" subtitle="Subtitle" />
-      <Appbar.Action icon="magnify" onPress={_handleSearch} />
-      <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
+      {(goBackBtn())}
+      <Appbar.Content title={title}/>
     </Appbar.Header>
   );
 };
