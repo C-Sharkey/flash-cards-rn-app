@@ -7,11 +7,16 @@ import AddDeck from './screens/AddDeck';
 import Deck from './screens/Deck';
 import Decks from './screens/Decks';
 import Quiz from './screens/Quiz';
-
+import { setLocalNotification } from './utils/utils'
 
 export default function App () {
 
-const [nextId, setNextId] = React.useState(3);
+React.useEffect(() =>{
+  setLocalNotification()
+  console.log('useEffect........')
+});
+
+const [nextId, setNextId] = React.useState(5);
 const [decks, setDecks] = React.useState([
   {id: 1, name: 'React', questions:[{question: 'What is React?',answer: 'A library for managing user interfaces'},{question: 'Where do you make Ajax requests in React?',answer: 'The componentDidMount lifecycle event'}]},
   {id: 2, name: 'JavaScript', questions: [{question: 'What is a closure?',answer: 'The combination of a function and the lexical environment within which that function was declared.'}]},
@@ -26,6 +31,7 @@ const getDeckValue = (deckName) => {
   setDecks([...decks, {id: nextId, name: deckName, questions:[]}]);
   // increment Id
   setNextId(nextId+1);
+  console.log('DECK-ID:: ', nextId)
 }
 
 //// Add Cards to a deck

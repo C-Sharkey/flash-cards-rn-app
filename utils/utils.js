@@ -6,13 +6,13 @@
     // addCardToDeck: take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title.
 
 
-    import React from 'react'
-    import { AsyncStorage } from 'react-native'
+
     import * as Notifications from 'expo-notifications';
     import * as Permissions from 'expo-permissions';
-
-
+    import { AsyncStorage } from 'react-native'
+ 
     const NOTIFICATION_KEY = 'Flashcards:notification'
+
 
     export function clearLocalNotification () {
         return AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -42,23 +42,24 @@
                 if (data === null) {
                     Permissions.askAsync(Permissions.NOTIFICATIONS)
                         .then(({ status }) => {
-                            Notifications.cancelAllScheduledNotificationsAsync()
+                            if (status === 'granted') {
+                                Notifications.cancelAllScheduledNotificationsAsync()
+    
+                                let tomorrow = new Date()
+                                tomorrow.setDate(tomorrow.getDate() + 1)
+                                tomorrow.setHours(20)
+                                tomorrow.setMinutes(0)
 
-                            let tomorrow = new Date()
-                            tomorrow.setDate(tomorrow.getDate() + 1)
-                            tomorrow.setHours(20)
-                            tomorrow.setMinutes(0)
-
-                            Notifications.scheduleLocalNotificationAsync(
-                                createNotification(),
-                                {
-                                    time: tomorrow,
-                                    repeat: 'day',
-                                }
-                        )
-
-                        AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-                        
+                                Notifications.scheduleLocalNotificationAsync(
+                                    createNotification(),
+                                    {
+                                        time: tomorrow,
+                                        repeat: 'day',
+                                    }
+                                )
+                                
+                                AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+                            }
                     })
             }
         })

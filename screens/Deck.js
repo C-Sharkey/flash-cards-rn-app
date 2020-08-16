@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { clearLocalNotification, setLocalNotification } from '../utils/utils'
 import { View, StyleSheet } from 'react-native';
 import { Title, Divider, Button } from 'react-native-paper';
 import LargeButton from '../components/LargeButton';
@@ -7,6 +8,14 @@ import LargeButton from '../components/LargeButton';
 export default function Deck (props) {
   const data = props.route.params;
   const navigation = useNavigation();
+
+  const startQuiz = () => {
+    // Clear notification when user stars a quiz and set new notification for next day
+    clearLocalNotification()
+      .then(setLocalNotification)
+    // go to quiz screen
+    navigation.navigate('Quiz', data)
+  }
 
   return (
       <View style={styles.container}>
@@ -24,7 +33,7 @@ export default function Deck (props) {
           <LargeButton 
             btnText='Start Quiz' 
             mode='contained' 
-            changeScreen={() => navigation.navigate('Quiz', data)}
+            changeScreen={startQuiz}
           />
         }
 
