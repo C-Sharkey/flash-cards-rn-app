@@ -8,24 +8,25 @@ import Input from '../components/Input';
 import FormButton from '../components/FormButton';
 
 export default function AddCard (props) {
-  console.log('Props(params):: ', props);
+  // data from params
   const data = props.route.params;
-  console.log('ADDCARD-DATA:: ', data);
-  console.log('||||---> Data.id for addCard file = ', data.id)
-
+  // navigate
   const navigation = useNavigation();
-
+  // state to manage inputs
   const [questionText, setQuestionText] = React.useState('');
   const [answerText, setAnswerText] = React.useState('');
   
+  // Save new card funcntion
   const onSaveCard = () => {
+    // updates state in app.js 
     props.getFormValues(data, questionText, answerText)
-
+    // reset inputs
     setQuestionText('');
     setAnswerText('');
+    // navigate to deck screen
     navigation.navigate('Deck')
-
   }
+  
   return (
       <View style={styles.container}>
         <Title style={styles.title}>Card Number: {data.questions.length}</Title>

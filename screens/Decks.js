@@ -10,8 +10,8 @@ export default function Decks (props) {
   const deckData = props.data.decks;
 
   const DecksRoute = () => <DeckCardsList deckData={deckData} />     
-  
   const AddDeckRoute = () =>  <AddDeck onSaveDeck={onSaveDeck} />;
+
 
   // State for bottom nav
   const [index, setIndex] = React.useState(0);
