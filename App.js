@@ -13,8 +13,7 @@ export default function App () {
 
 React.useEffect(() =>{
   setLocalNotification()
-  console.log('useEffect........')
-});
+}, []);
 
 const [nextId, setNextId] = React.useState(5);
 const [decks, setDecks] = React.useState([
