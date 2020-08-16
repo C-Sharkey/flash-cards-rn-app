@@ -1,37 +1,34 @@
 import * as React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { View, StyleSheet } from 'react-native';
-import { Title } from 'react-native-paper';
-import Input from '../components/Input';
-import FormButton from '../components/FormButton';
-import TabBar from '../components/TabBar'
+import { Modal, Portal, Text, Button, Provider } from 'react-native-paper';
 
 export default function AddDeck () {
-  const navigation = useNavigation();
-  return (
-      <View style={styles.container}>
-        <Title style={styles.title}>Add A Deck</Title>
-        <Input labelText='Deck Name'/>
-        <FormButton 
-          btnText='Add Deck'
-          changeScreen={()=>navigation.navigate('Deck')}
-        />
-      <TabBar />
-      </View>
+  const [visible, setVisible] = React.useState(false);
 
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  return (
+    <Provider>
+      <Portal>
+        <Modal visible={visible} onDismiss={hideModal}>
+          <Text>Example Modal</Text>
+        </Modal>
+        <Button style={{marginTop: 30}} onPress={showModal}>
+          Show
+        </Button>
+      </Portal>
+    </Provider>
   );
 };
 
+
+
+
+
+
+
+
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 20,
-      backgroundColor: "#fff"
-    },
-    title: {
-      paddingVertical: 8,
-    },
-    button: {
-        marginVertical: 16
-    }
   });
