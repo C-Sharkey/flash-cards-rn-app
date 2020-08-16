@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native'
-import { Text, Button  } from 'react-native-paper';
-import { Title } from 'react-native-paper';
+import { Text, Button, Title } from 'react-native-paper';
 
 
 export default function QuizResults (props) {
